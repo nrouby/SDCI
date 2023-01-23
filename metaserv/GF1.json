@@ -1,0 +1,1 @@
+{"type": "gateway", "local_ip": "10.0.0.1", "local_port": "8282", "local_name": "GF1", "remote_ip": "10.0.0.4", "remote_port": "8181", "remote_name": "GI", "send_period": "None", "delai": "None", "tailing": "dev1"}

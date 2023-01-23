@@ -1,0 +1,1 @@
+{"type": "dev", "local_ip": "10.0.0.1", "local_port": "9001", "local_name": "dev1", "remote_ip": "127.0.0.1", "remote_port": "8282", "remote_name": "GF1", "send_period": "3000", "delai": "None", "tailing": "None"}
