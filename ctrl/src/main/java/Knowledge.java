@@ -40,7 +40,7 @@ class Knowledge {
     private final Map<String, String> dropperinfo = new HashMap<>();
     private final Map<String, String> monitorinfo = new HashMap<>();
     private final String olddestip = "10.0.0.4";
-    private final List<String> GFs = List.of("10.0.0.1", "10.0.0.2", "10.0.0.3");
+    private final List<String> GFs = new ArrayList<String>(Arrays.asList("10.0.0.1", "10.0.0.2", "10.0.0.3"));
     private String newdestip;
     private String olddropperip;
     private String oldmonitorip;
