@@ -29,13 +29,13 @@ class MANOAPI {
             String data = "{\"image\":\"" + vnfinfos.get("image") + "\", \"network\":\"" + vnfinfos.get("net") + "\"}";
             RequestBody body = RequestBody.create(data, JSON);
             Request request = new Request.Builder()
-                    .url("http://127.0.0.1:5001/restqpi/compute/dc1/" + vnfinfos.get("name"))
+                    .url("http://127.0.0.1:5001/restapi/compute/dc1/" + vnfinfos.get("name"))
                     .addHeader("Content-Type", "application/json")
                     .put(body)
                     .build();
             OkHttpClient client = new OkHttpClient();
             Response response = client.newCall(request).execute();
-            Main.logger(this.getClass().getSimpleName(), "Deployed VNF " + vnfinfos.get("name") + " : " + response.body().string());
+            Main.logger(this.getClass().getSimpleName(), "Deployed VNF " + vnfinfos.get("name") + " : \n " + response.body().string() +"\n");
         } catch (Exception e) {
             e.printStackTrace();
         }
