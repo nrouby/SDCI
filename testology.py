@@ -61,7 +61,7 @@ def create_topology():
     rapi1.start()
 
     info('*** Adding docker containers\n')
-    GF1 = net.addDocker('GF1', ip='10.0.0.1', dimage="super:latest", environment={"CONTAINER_NAME":"GF1"})#, dcmd="python3 /code/init.py")
+    GF1 = net.addDocker('GF1', ip='10.0.0.1', dimage="super:latest", environment={"CONTAINER_NAME":"GF1"}, dcmd="python3 /code/init.py")
     GF2 = net.addDocker('GF2', ip='10.0.0.2', dimage="super:latest", environment={"CONTAINER_NAME":"GF2"}, dcmd="python3 /code/init.py")
     GF3 = net.addDocker('GF3', ip='10.0.0.3', dimage="super:latest", environment={"CONTAINER_NAME":"GF3"}, dcmd="python3 /code/init.py")
     GI = net.addDocker('GI', ip='10.0.0.4', dimage="super:latest", environment={"CONTAINER_NAME":"GI"}, dcmd="python3 /code/init.py")
