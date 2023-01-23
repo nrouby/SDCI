@@ -35,7 +35,7 @@ class MANOAPI {
                     .build();
             OkHttpClient client = new OkHttpClient();
             Response response = client.newCall(request).execute();
-            Main.logger(this.getClass().getSimpleName(), "Deployed VNF " + vnfinfos.get("name"));
+            Main.logger(this.getClass().getSimpleName(), "Deployed VNF " + vnfinfos.get("name") + " : " + response.body().string());
         } catch (Exception e) {
             e.printStackTrace();
         }
