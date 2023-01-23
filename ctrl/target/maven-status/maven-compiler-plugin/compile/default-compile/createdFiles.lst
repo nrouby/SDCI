@@ -1,6 +1,7 @@
 SDNCtrlAPI.class
 Main.class
 Knowledge.class
+Monitor$1.class
 Plan.class
 Monitor.class
 Analyze.class
