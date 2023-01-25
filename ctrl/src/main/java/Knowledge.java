@@ -58,12 +58,12 @@ class Knowledge {
 
         dropperinfo.put("name", "dropper");
         dropperinfo.put("image", "dropper:latest");
-        dropperinfo.put("net", "(id=2,ip=10.0.0.21/24,port=5001)");
+        dropperinfo.put("net", "(id=dropper-eth0,ip=10.0.0.21/24)");
         dropperinfo.put("ip", "10.0.0.21");
 
         monitorinfo.put("name", "monitor");
         monitorinfo.put("image", "monitor:latest");
-        monitorinfo.put("net", "(id=1,ip=10.0.0.22/24,port=5001)");
+        monitorinfo.put("net", "(id=monitor-eth0,ip=10.0.0.22/24)");
         monitorinfo.put("ip", "10.0.0.22");
 
         Main.logger(this.getClass().getSimpleName(), "Knowledge Starting");
