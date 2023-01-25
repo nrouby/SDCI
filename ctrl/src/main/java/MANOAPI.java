@@ -26,7 +26,7 @@ class MANOAPI {
         }
 
         try {
-            String data = "{\"image\":\"" + vnfinfos.get("image") + "\", \"network\":" + vnfinfos.get("net") + "}";
+            String data = "{\"image\":\"" + vnfinfos.get("image") + "\", \"network\":\"" + vnfinfos.get("net") + "\"}";
             String adress = "http://127.0.0.1:5001/restapi/compute/dc1/" + vnfinfos.get("name");
             RequestBody body = RequestBody.create(data, JSON);
             Request request = new Request.Builder()
@@ -35,7 +35,7 @@ class MANOAPI {
                     .put(body)
                     .build();
             OkHttpClient client = new OkHttpClient();
-            Main.logger(this.getClass().getSimpleName(), adress +" "+data);
+            Main.logger(this.getClass().getSimpleName(), adress);
             Response response = client.newCall(request).execute();
             Main.logger(this.getClass().getSimpleName(), "Deployed VNF " + vnfinfos.get("name") + " : \n " + response.body().string() +"\n");
         } catch (Exception e) {
