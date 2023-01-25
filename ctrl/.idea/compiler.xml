@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="fr.laas.sara.sdci.gctrl" target="9" />
+      <module name="fr.laas.sara.sdci.gctrl" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

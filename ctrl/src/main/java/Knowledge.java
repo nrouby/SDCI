@@ -63,7 +63,7 @@ class Knowledge {
 
         monitorinfo.put("name", "monitor");
         monitorinfo.put("image", "monitor:latest");
-        monitorinfo.put("net", "(id=monitor-eth0,ip=10.0.0.22/24,port=5001)");
+        monitorinfo.put("net", "{\"id\":\"monitor-eth0\",\"ip\":\"10.0.0.22/24\",\"port\":\"5001\"}");
         monitorinfo.put("ip", "10.0.0.22");
 
         Main.logger(this.getClass().getSimpleName(), "Knowledge Starting");
