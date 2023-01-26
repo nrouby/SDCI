@@ -27,11 +27,8 @@ class Knowledge {
     private static final String DB_CONNECTION = "jdbc:h2:~/test";
     private static final String DB_USER = "";
     private static final String DB_PASSWORD = "";
-
-    static final int moving_wind = 10;
-    static final int horizon = 3;
+    
     static final String gw = "GW_I";
-    static final double gw_lat_threshold = 20;
 
     private static final List<String> symptom = Arrays.asList("N/A", "NOK", "OK");
     private static final List<String> rfc = Arrays.asList("DoNotDoAnything", "DecreaseLatencyIn" + gw);
@@ -39,9 +36,7 @@ class Knowledge {
     private static final List<String> plan = Arrays.asList("A", "B");
     private final Map<String, String> dropperinfo = new HashMap<>();
     private final Map<String, String> monitorinfo = new HashMap<>();
-    private final String olddestip = "10.0.0.4";
     private final List<String> GFs = new ArrayList<String>(Arrays.asList("10.0.0.1", "10.0.0.2", "10.0.0.3"));
-    private String newdestip;
     private String olddropperip;
     private String oldmonitorip;
     private String problematicip = "N/A";
@@ -163,44 +158,6 @@ class Knowledge {
 
         return r;
 
-    }
-
-    ResultSet select_from_tab() {
-        //Main.logger("Select the last " + n + " latencies");
-        Connection conn = getDBConnection();
-        String SelectQuery = "select TOP " + moving_wind + " * from " + Knowledge.gw + "_LAT" + " ORDER BY id DESC";
-        //PreparedStatement select;
-        ResultSet rs = null;
-        try {
-            Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            // select = conn.prepareStatement(SelectQuery);
-            rs = stmt.executeQuery(SelectQuery);
-        } catch (SQLException e) {
-            System.out.println("Exception Message " + e.getLocalizedMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return rs;
-
-
-    }
-
-    void create_lat_tab() {
-        try (Connection conn = getDBConnection()) {
-            Statement create;
-            conn.setAutoCommit(false);
-            create = conn.createStatement();
-            create.execute("CREATE TABLE " + Knowledge.gw + "_LAT" + " (id timestamp primary key, latency double )");
-            create.close();
-            conn.commit();
-        } catch (SQLException e) {
-            System.out.println("Exception Message " + e.getLocalizedMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            Main.logger(this.getClass().getSimpleName(), "... Database Created");
-
-        }
     }
 
     private void store_plans() throws SQLException {
@@ -340,21 +297,7 @@ class Knowledge {
         return dropperinfo;
     }
 
-    public String getOlddestip() {
-        return olddestip;
-    }
-
-    public String getNewdestip() {
-        return newdestip;
-    }
-
-    public void setNewdestip(String newdestip) {
-        this.newdestip = newdestip;
-    }
-
-    public String getOldDropperIp() {
-        return olddropperip;
-    }
+    public String getOldDropperIp() { return olddropperip; }
 
     public void setOldDropperIp(String olddropperip) {
         this.olddropperip = olddropperip;

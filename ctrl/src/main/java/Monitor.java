@@ -46,7 +46,6 @@ import java.util.*;
 class Monitor {
     private static List<String> symptom;
     private static final int period = 2000;
-    private static double i = 0;
     public String gw_current_SYMP = "N/A";
     private static final MANOAPI manoapi = new MANOAPI();
     private static final SDNCtrlAPI sdnctlrapi = new SDNCtrlAPI();
@@ -58,27 +57,22 @@ class Monitor {
 
         Main.logger(this.getClass().getSimpleName(), "Deploying Monitor");
         String newdestip = manoapi.deploy_vnf(Main.shared_knowledge.getMonitorInfo());
-        Main.shared_knowledge.setNewdestip(newdestip);
         Main.shared_knowledge.setOldMonitorIp(newdestip);
         Main.logger(this.getClass().getSimpleName(), "Redirecting Traffic GFs to Monitor");
         for (String ip : Main.shared_knowledge.getGFs()) {
             String status = sdnctlrapi.redirect_traffic(Main.shared_knowledge.getOldMonitorIp(), ip, 100);
             Main.logger(this.getClass().getSimpleName(), status);
-        }
-
-        for (String ip : Main.shared_knowledge.getGFs()) {
             oldCount.put(ip,0);
         }
 
         symptom = Main.shared_knowledge.get_symptoms();
-        Main.shared_knowledge.create_lat_tab();
         data_collector(); //in bg
     }
 
     //Data Collector
     private void data_collector() {
         new Thread(() -> {
-            Main.logger(this.getClass().getSimpleName(), "Filling db with latencies");
+            Main.logger(this.getClass().getSimpleName(), "Monitor : Launching data_collector thread");
             while (Main.run)
                 try {
                     Thread.sleep(period);
@@ -131,7 +125,7 @@ class Monitor {
             Response response = client.newCall(request).execute();
             Gson gson = new Gson();
             newCount = gson.fromJson(response.body().string(), new TypeToken<HashMap<String, Integer>>(){}.getType());
-            Main.logger(this.getClass().getSimpleName(), "Monitoring Request");
+            Main.logger(this.getClass().getSimpleName(), "Monitoring Request Answer : " + newCount);
         } catch (Exception e) {
             e.printStackTrace();
         }

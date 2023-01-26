@@ -40,7 +40,6 @@ class Execute {
                     case "UC2":
                         Main.logger(this.getClass().getSimpleName(), "Deploying Dropper");
                         String newdestip = manoapi.deploy_vnf(Main.shared_knowledge.getDropperInfo());
-                        Main.shared_knowledge.setNewdestip(newdestip);
                         Main.shared_knowledge.setOldDropperIp(newdestip);
                         break;
                     case "UC3":
