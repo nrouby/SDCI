@@ -28,6 +28,7 @@ from mininet.log import setLogLevel, info
 from emuvim.dcemulator.net import DCNetwork
 from emuvim.api.rest.rest_api_endpoint import RestApiEndpoint
 from emuvim.api.openstack.openstack_api_endpoint import OpenstackApiEndpoint
+from mininet.node import RemoteController
 
 logging.basicConfig(level=logging.INFO)
 setLogLevel('info')  # set Mininet loglevel
@@ -45,6 +46,10 @@ logging.getLogger('api.openstack.helper').setLevel(logging.DEBUG)
 
 def create_topology():
     net = DCNetwork(monitor=False, enable_learning=True)
+
+    #c0 = net.addController( 'c0', controller=RemoteController, ip='127.0.0.1', port=8080 )
+    #ryu = net.addDocker( 'ryu', ip='127.0.0.1', port=8080, dimage="osrg/ryu" )
+    #net.addLink( ryu, c0 )
 
     info('*** Adding datacenter\n')
 

@@ -15,3 +15,5 @@ RUN apt-get install iproute2 -y
 RUN python -m pip install -r requirements.txt
 
 COPY . .
+
+ENV VIM_EMU_CMD "python3 dropper.py"

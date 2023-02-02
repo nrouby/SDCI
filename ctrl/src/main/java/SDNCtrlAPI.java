@@ -15,10 +15,10 @@ class SDNCtrlAPI {
         Main.logger(this.getClass().getSimpleName(), "destination = " + dest + "; origin = " + origin);
 
         try {
-            String data = "{\"idle_timeout\": 0,\"hard_timeout\": 0,\"priority\": "+ priority +
-                    ",\"match\":{\"eth_type\": 2048,\"ipv4_src\": \"" + origin +
-                    "\" },\"actions\":[ {\"type\":\"SET_FIELD\",\"field\":\"ipv4_dst\",\"value\":\"" + dest +
-                    "\" }, {\"type\":\"OUTPUT\",\"port\":\"CONTROLLER\" }] }";
+            String data = "{\"dpid\": 1,\"cookie\": 1,\"cookie_mask\": 1,\"table_id\": 0,\"idle_timeout\": 0,\"hard_timeout\": 0,\"priority\": "+ priority +
+                    ",\"flags\": 1,\"match\":{\"nw_src\": \"" + origin +
+                    "\" },\"actions\":[{\"type\":\"SET_NW_DST\",\"nw_dst\":\"" + dest +
+                    "\" }, {\"type\":\"OUTPUT\",\"port\":\"3\"}] }";
             RequestBody body = RequestBody.create(data, JSON);
             Request request = new Request.Builder()
                     .url("http://127.0.0.1:8080/stats/flowentry/add/")
